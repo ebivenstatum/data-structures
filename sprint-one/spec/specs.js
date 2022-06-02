@@ -39,8 +39,11 @@ define([
       });
 
       it('reports a size of 2 after adding two items', function() {
+        //console.log(stack);
         stack.push('a');
+        //console.log(stack);
         stack.push('b');
+        //console.log(stack);
         expect(stack.size()).to.equal(2);
       });
 
@@ -49,9 +52,13 @@ define([
       });
 
       it('reports a size of 1 after adding two items and removing one', function() {
+        //console.log(stack);
         stack.push('a');
+        //console.log(stack);
         stack.push('b');
+        //console.log(stack);
         stack.pop();
+        //console.log(stack);
         expect(stack.size()).to.equal(1);
       });
 
@@ -88,6 +95,8 @@ define([
     });
 
   });
+
+
 
   describe('queue', function() {
     var queue;
@@ -160,6 +169,8 @@ define([
     });
 
   });
+
+
 
 
   window.mochaPhantomJS ? mochaPhantomJS.run() : mocha.run();
