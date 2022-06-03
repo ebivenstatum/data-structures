@@ -6,7 +6,7 @@ var LinkedList = function() {
   list.addToTail = function(value) {
     /**
      * create a new node;
-     * let our tail point to the new node
+   * let our tail point to the new node
      * let our tail become new node's next node
      * so tail is always the last element
      *
@@ -28,18 +28,15 @@ var LinkedList = function() {
 
   list.removeHead = function() {
 
-
    //list head -> 2nd element of linked list
     const removedHead = list.head;
 
     if (!removedHead) {
       return;
     }
-
-    console.log(list.head.next);
+    //console.log(list.head.next);
 
     if (list.head.next !== null) {
-
       list.head = list.head.next;
 
     }
