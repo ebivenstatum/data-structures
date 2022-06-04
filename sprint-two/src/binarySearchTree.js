@@ -1,74 +1,69 @@
 var BinarySearchTree = function(value) {
-  var BinarySearchTree = {};
-  BinarySearchTree.value = value;
-  BinarySearchTree.left = {};
-  BinarySearchTree.right = {};
-  BinarySearchTree = _.extend(BinarySearchTree, binarySearchTreeMethods);
-
-  return BinarySearchTree;
+  var newTree = Object.create(BinarySearchTree.prototype);
+  newTree.value = value;
+  newTree.left;
+  newTree.right;
+  return newTree;
 };
 
-var binarySearchTreeMethods = {};
+BinarySearchTree.prototype.insert = function(value) {
 
-binarySearchTreeMethods.insert = function(value) {
-
-  /*if (!this.value) {
+  if (this.value === undefined) {
     this.value = value;
     return;
-  } else {*/
-    /**
-     * base case:
-     *  current value is not assigned, then assign value to current tree
-     *  return
-     * accumlate case:
-     *  if right child exist && current > input value
-     *      go to right child
-     *  else value greater than current value && left child exist
-     *      got to left child
-     */
-
-    if (this.left !== undefined && value < this.value/*this.right*/) {
-
-        //if (value < this.right.value) {
-          var leftChild = BinarySearchTree(this.left);
-          leftChild.insert(value);
-        //}
-
-    } else if (this.right !== undefined && value > this.value ) {
-        var rightChild = BinarySearchTree(this.right);
-        rightChild.insert(value);
+  } else {
+    if (this.value < value) {
+      if (this.right === undefined) {
+        this.right = BinarySearchTree(value);
+      } else {
+        this.right.insert(value);
+      }
     } else {
-
-      // NOTE: WORK ON THIS TOMORROW
-     if (value > this.value) {
-        var rightChild = BinarySearchTree(value);
-        console.log(rightChild);
-        this.right = rightChild;
-     }
-
-     if (value < this.value) {
-        var leftChild = BinarySearchTree(value);
-        console.log(leftChild);
-        this.left = leftChild;
-     }
+      if (this.left === undefined) {
+        this.left = BinarySearchTree(value);
+      } else {
+        this.left.insert(value);
+      }
     }
+  }
+  return;
+
+}
+
+BinarySearchTree.prototype.contains = function(target) {
+
+  var output = false;
+
+  if (this.value === target) {
+    output = true;
+  } else if ( target > this.value && this.right !== undefined) {
+    output = this.right.contains(target);
+  } else if (target < this.value && this.left !== undefined) {
+    output = this.left.contains(target);
+  }
+
+  return output;
+
+}
+
+BinarySearchTree.prototype.depthFirstLog = function(func) {
+
+  func(this.value);
+
+  if (this.left) {
+    this.left.depthFirstLog(func);
+  }
+  if (this.right) {
+    this.right.depthFirstLog(func);
+  }
+  return func;
 
 
-  //}
+}
 
-  //return
+// /*
+//  * Complexity: What is the time complexity of the above functions?
+//  */ insert: O(logn)
+//  */ contains: O(logn)
+//  */ depthFirstLog: O(n)
 
-};
-
-binarySearchTreeMethods.contains = function() {
-
-};
-
-binarySearchTreeMethods.depthFirstLog = function () {
-
-};
-
-
-/*
- * Complexity: What is the time complexity of the above functions?
- */
